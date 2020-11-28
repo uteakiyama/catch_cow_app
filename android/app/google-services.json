@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "723832595121",
+    "firebase_url": "https://catch-cow.firebaseio.com",
+    "project_id": "catch-cow",
+    "storage_bucket": "catch-cow.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:723832595121:android:ab47effbd2b469c7d0b890",
+        "android_client_info": {
+          "package_name": "com.example.catch_cow_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "723832595121-021863jpng0hd8sv3j5ioj9bv0ddv4pm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDe6qazeBe_hzBst7n88Cnk7hVI0T7BXLM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "723832595121-021863jpng0hd8sv3j5ioj9bv0ddv4pm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
