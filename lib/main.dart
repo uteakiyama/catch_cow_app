@@ -1,13 +1,10 @@
-import 'package:catch_cow_app/user/login_page.dart';
+import 'package:catch_cow_app/splash_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'cow/cow_view_model.dart';
-import 'cow/cows_page.dart';
-import 'cow/cows_screen.dart';
 import 'colors.dart';
 import 'package:catch_cow_app/user/user_view_model.dart';
-import 'package:firebase_core/firebase_core.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,7 +28,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Flutter Demo',
         theme: _daysTheme,
-        home: LoginPage(),
+        home: SplashPage(),
       ),
     );
   }

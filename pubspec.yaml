@@ -17,8 +17,13 @@ dependencies:
   firebase_core: ^0.5.2
   firebase_auth: ^0.18.3
   cloud_firestore: ^0.14.3
+  firebase_storage: ^5.1.0
+  path_provider: ^1.6.24
+  image_picker: ^0.6.7+14
   http: ^0.12.2
   hexcolor: ^1.0.6
+  flutter_slidable: ^0.5.7
+
 
 
 dev_dependencies:
@@ -30,3 +35,8 @@ flutter:
   uses-material-design: true
   assets:
     - images/hol.png
+    - images/Preloader_1.gif
+    - images/Preloader_2.gif
+    - images/Preloader_3.gif
+    - images/Preloader_4.gif
+    - images/Preloader_5.gif

@@ -1,76 +1,45 @@
+import 'package:catch_cow_app/cow/service/cow_service.dart';
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'cow_model.dart';
+import 'cow.dart';
 
 class CowViewModel extends ChangeNotifier {
-  final firestore = Firestore.instance;
   String cowNumber = '';
   String locale = '';
-  List<Cow> cows = [];
+  TextEditingController cowNumberEditingController;
+  TextEditingController localeEditingController;
+  final List<Cow> cowList = [];
 
-  void changeCowNumber(String inputCowNumber) {
+  void changeCowNumberText(String inputCowNumber) {
     cowNumber = inputCowNumber;
+    cowNumberEditingController = TextEditingController(text: cowNumber);
     notifyListeners();
   }
 
-  void changeLocale(String inputLocale) {
+  void changeLocaleText(String inputLocale) {
     locale = inputLocale;
+    localeEditingController = TextEditingController(text: locale);
     notifyListeners();
   }
 
-  Future getCows() async {
-    final snapshots = await Firestore.instance.collection('cows').snapshots();
-    snapshots.listen((snapshot) {
-      final cows = snapshot.docs.map((doc) => Cow(doc)).toList();
-      this.cows = cows;
-      notifyListeners();
-    });
-  }
-
-  Future getCow() async {
-    DocumentSnapshot snapshot = await Firestore.instance
-        .collection('cows')
-        .document('19qYhAQouV81Ik7H9DWu')
-        .get();
-    print(snapshot);
-  }
-
-  void reload() async {
-    DocumentSnapshot snapshot = await Firestore.instance
-        .collection('cows')
-        .document('19qYhAQouV81Ik7H9DWu')
-        .get();
+  void resetAllText() {
+    cowNumber = '';
+    cowNumberEditingController = TextEditingController(text: cowNumber);
+    locale = '';
+    localeEditingController = TextEditingController(text: locale);
     notifyListeners();
   }
 
-  Future addCow() async {
-    if (cowNumber.isEmpty) {
-      throw ('耳評番号を入れてください');
-    }
-    await Firestore.instance.collection('cows').add(
-      {
-        'cowNumber': cowNumber,
-        'locale': locale,
-      },
-    );
+  void postCow() async {
+    await CowService().addCow(cowNumber: cowNumber, locale: locale);
   }
 
-  Future updateCow(Cow cow) async {
-    // await Firestore.instance
-    //     .collection('cows')
-    //     .document(cow.documentID)
-    //     .updateData(
-    //   {
-    //     'cowNumber': cowNumber,
-    //     'locale': locale,
-    //   },
-    // var index =
+  void updateCow(
+      {@required String documentId, String cowNumber, String locale}) async {
+    await CowService().updateCow(
+        documentId: documentId, cowNumber: cowNumber, locale: locale);
   }
 
-  Future deleteCow(Cow cow) async {
-    await Firestore.instance
-        .collection('cows')
-        .document(cow.documentID)
-        .delete();
+  void deleteCow({@required String documentId}) async {
+    await CowService().deleteCow(documentId: documentId);
   }
 }
