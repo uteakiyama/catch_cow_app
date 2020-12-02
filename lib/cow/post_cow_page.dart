@@ -1,5 +1,4 @@
 import 'package:catch_cow_app/cow/cow_view_model.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -20,6 +19,33 @@ class PostCowPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            InkWell(
+              onTap: () async {
+                await cow.showImagePicker();
+              },
+              child: SizedBox(
+                width: 160,
+                height: 160,
+                child: cow.imageFile != null
+                    ? Image.file(cow.imageFile)
+                    : Container(
+                        color: Colors.grey,
+                      ),
+              ),
+            ),
+            FlatButton(
+              onPressed: () {
+                cow.getImageFromCamera();
+              },
+              child: Text('カメラ'),
+            ),
+            FlatButton(
+              onPressed: () {
+                // cow.getImageFromGallery();
+                cow.showImagePicker();
+              },
+              child: Text('ギャラリー'),
+            ),
             Text('title'),
             Padding(
               padding: const EdgeInsets.all(20),

@@ -3,7 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>画像を設定</string>
+    <string>This app requires to access your photo library</string>
+    <key>NSCameraUsageDescription</key>
+    <string>This app requires to add file to your camera</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>This app requires to add file to your photo library your microphone</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
