@@ -10,11 +10,13 @@ class CowService {
   Future<void> addCow({
     @required String cowNumber,
     @required String locale,
+    String imageUrl,
   }) async {
     CollectionReference cows = FirebaseFirestore.instance.collection('cows');
     return cows.add({
       'cowNumber': cowNumber,
       'locale': locale,
+      'imageUrl': imageUrl,
     });
   }
 
@@ -22,11 +24,13 @@ class CowService {
     @required String documentId,
     @required String cowNumber,
     @required String locale,
+    String imageUrl,
   }) {
     CollectionReference cows = FirebaseFirestore.instance.collection('cows');
     return cows.doc(documentId).update({
       'cowNumber': cowNumber,
       'locale': locale,
+      'imageUrl': imageUrl,
     });
   }
 

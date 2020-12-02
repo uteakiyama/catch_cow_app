@@ -34,14 +34,18 @@ class CowViewModel extends ChangeNotifier {
   }
 
   void postCow() async {
-    final imageURL = await _uploadImageFile(); //つけた
-    await CowService().addCow(cowNumber: cowNumber, locale: locale);
+    final imageUrl = await _uploadImageFile(); //つけた
+    await CowService()
+        .addCow(cowNumber: cowNumber, locale: locale, imageUrl: imageUrl);
   }
 
   void updateCow({@required String documentId}) async {
-    final imageURL = await _uploadImageFile(); //つけた
+    final imageUrl = await _uploadImageFile(); //つけた
     await CowService().updateCow(
-        documentId: documentId, cowNumber: cowNumber, locale: locale);
+        documentId: documentId,
+        cowNumber: cowNumber,
+        locale: locale,
+        imageUrl: imageUrl);
   }
 
   void deleteCow({@required String documentId}) async {
