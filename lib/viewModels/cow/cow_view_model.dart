@@ -12,36 +12,34 @@ class CowViewModel extends ChangeNotifier {
   String cowNumber = '';
   String locale = '';
   File imageFile;
-  TextEditingController cowNumberEditingController;
-  TextEditingController localeEditingController;
+  firebase_storage.FirebaseStorage storage =
+      firebase_storage.FirebaseStorage.instance;
+
   final List<Cow> cowList = [];
 
   void changeCowNumberText(String inputCowNumber) {
     cowNumber = inputCowNumber;
-    cowNumberEditingController = TextEditingController(text: cowNumber);
     notifyListeners();
   }
 
   void changeLocaleText(String inputLocale) {
     locale = inputLocale;
-    localeEditingController = TextEditingController(text: locale);
     notifyListeners();
   }
 
   void resetAllText() {
     cowNumber = '';
-    cowNumberEditingController = TextEditingController(text: cowNumber);
     locale = '';
-    localeEditingController = TextEditingController(text: locale);
     notifyListeners();
   }
 
   void postCow() async {
+    final imageURL = await _uploadImageFile(); //つけた
     await CowService().addCow(cowNumber: cowNumber, locale: locale);
   }
 
-  void updateCow(
-      {@required String documentId, String cowNumber, String locale}) async {
+  void updateCow({@required String documentId}) async {
+    final imageURL = await _uploadImageFile(); //つけた
     await CowService().updateCow(
         documentId: documentId, cowNumber: cowNumber, locale: locale);
   }
@@ -50,12 +48,34 @@ class CowViewModel extends ChangeNotifier {
     await CowService().deleteCow(documentId: documentId);
   }
 
+  setImage(File imageFile) {
+    this.imageFile = imageFile;
+    notifyListeners();
+  }
+
+  Future<String> _uploadImageFile() async {
+    if (imageFile == null) {
+      return '';
+    }
+    final Reference reference = storage.ref().child(cowNumber);
+    await reference.putFile(imageFile);
+    return await reference.getDownloadURL();
+  }
+
   Future showImagePicker() async {
     final picker = ImagePicker();
     final pickedFile = await picker.getImage(source: ImageSource.gallery);
     imageFile = File(pickedFile.path);
+    // Directory appDocDir = await getApplicationDocumentsDirectory();
+    // String filePath = '${appDocDir.absolute}/file-to-upload.png';
+    // // await uploadFile(filePath);
     notifyListeners();
   }
+
+  // Future<void> uploadFile(String filePath) async {
+  //   File file = File(filePath);
+  //   await storage.ref().child('cow').putFile(file);
+  // }
 
   void getImageFromCamera() async {
     final imageFileFromCamera =
@@ -63,7 +83,9 @@ class CowViewModel extends ChangeNotifier {
     // String fileName = basename(imageFileFromCamera.path);
     Directory appDocDir = await getApplicationDocumentsDirectory();
     String filePath = '${appDocDir.absolute}/file-to-upload.png';
-    await CowService().uploadFile(filePath);
+    // int timestamp = DateTime.now().millisecondsSinceEpoch;
+    File file = File(filePath);
+    await storage.ref('uploads/file-to-upload.png').putFile(file);
     // Reference ref = FirebaseStorage.instance.ref().child('osu.jpg');
     // await ref.putFile(File(pickedImage.path));
     // imageUrl = await ref.getDownloadURL();

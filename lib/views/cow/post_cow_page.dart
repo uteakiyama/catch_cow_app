@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:catch_cow_app/viewModels/cow/cow_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:image_picker/image_picker.dart';
 
 class PostCowPage extends StatelessWidget {
   const PostCowPage({Key key, @required this.isEdit, this.documentId})
@@ -21,50 +24,40 @@ class PostCowPage extends StatelessWidget {
           children: [
             InkWell(
               onTap: () async {
-                await cow.showImagePicker();
+                final pickedFile =
+                    await ImagePicker().getImage(source: ImageSource.gallery);
+                cow.setImage(File(pickedFile.path));
               },
               child: SizedBox(
                 width: 160,
                 height: 160,
                 child: cow.imageFile != null
                     ? Image.file(cow.imageFile)
-                    : Container(
-                        color: Colors.grey,
+                    : Card(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(Icons.photo_library_outlined),
+                            Text('ギャラリー'),
+                          ],
+                        ),
+                        color: Colors.white,
                       ),
               ),
             ),
-            FlatButton(
-              onPressed: () {
-                cow.getImageFromCamera();
+            TextFormField(
+              initialValue: cow.cowNumber,
+              autofocus: true,
+              keyboardType: TextInputType.number,
+              onChanged: (String inputCowNumber) {
+                cow.changeCowNumberText(inputCowNumber);
               },
-              child: Text('カメラ'),
             ),
-            FlatButton(
-              onPressed: () {
-                // cow.getImageFromGallery();
-                cow.showImagePicker();
+            TextFormField(
+              initialValue: cow.locale,
+              onChanged: (String inputLocale) {
+                cow.changeLocaleText(inputLocale);
               },
-              child: Text('ギャラリー'),
-            ),
-            Text('title'),
-            Padding(
-              padding: const EdgeInsets.all(20),
-              child: TextField(
-                controller: cow.cowNumberEditingController,
-                onChanged: (String inputCowNumber) {
-                  cow.changeCowNumberText(inputCowNumber);
-                },
-              ),
-            ),
-            Text('subtitle'),
-            Padding(
-              padding: const EdgeInsets.all(20),
-              child: TextField(
-                controller: cow.localeEditingController,
-                onChanged: (String inputLocale) {
-                  cow.changeLocaleText(inputLocale);
-                },
-              ),
             ),
             RaisedButton(
               child: isEdit ? Text('保存') : Text('投稿'),
