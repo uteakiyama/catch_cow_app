@@ -1,4 +1,4 @@
-import 'package:catch_cow_app/cow/cow_view_model.dart';
+import 'package:catch_cow_app/viewModels/cow_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

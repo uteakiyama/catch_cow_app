@@ -1,5 +1,5 @@
-import 'package:catch_cow_app/cow/cows_page.dart';
-import 'package:catch_cow_app/user/login_page.dart';
+import 'package:catch_cow_app/views/cows_page.dart';
+import 'package:catch_cow_app/views/login_page.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as Math;
 import 'package:firebase_auth/firebase_auth.dart' as Auth;

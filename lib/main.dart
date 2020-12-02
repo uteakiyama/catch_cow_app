@@ -1,10 +1,10 @@
-import 'package:catch_cow_app/splash_page.dart';
+import 'package:catch_cow_app/views/splash_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'cow/cow_view_model.dart';
-import 'colors.dart';
-import 'package:catch_cow_app/user/user_view_model.dart';
+import 'viewModels/cow_view_model.dart';
+import 'common/colors.dart';
+import 'package:catch_cow_app/viewModels/user_view_model.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

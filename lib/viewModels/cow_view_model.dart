@@ -1,8 +1,8 @@
-import 'package:catch_cow_app/cow/service/cow_service.dart';
+import 'package:catch_cow_app/config/cow_service.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'cow.dart';
+import '../models/cow.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart';

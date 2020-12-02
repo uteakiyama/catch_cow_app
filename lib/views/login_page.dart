@@ -1,8 +1,8 @@
-import 'package:catch_cow_app/cow/cows_page.dart';
-import 'package:catch_cow_app/user/sign_up_page.dart';
+import 'package:catch_cow_app/views/cows_page.dart';
+import 'package:catch_cow_app/views/sign_up_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'user_view_model.dart';
+import '../viewModels/user_view_model.dart';
 
 class LoginPage extends StatelessWidget {
   @override

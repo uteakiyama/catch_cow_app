@@ -1,8 +1,8 @@
-import 'package:catch_cow_app/cow/cow.dart';
-import 'package:catch_cow_app/cow/cow_page.dart';
-import 'package:catch_cow_app/cow/cow_view_model.dart';
-import 'package:catch_cow_app/cow/post_cow_page.dart';
-import 'package:catch_cow_app/user/user_view_model.dart';
+import 'package:catch_cow_app/models/cow.dart';
+import 'package:catch_cow_app/views/cow_page.dart';
+import 'package:catch_cow_app/viewModels/cow_view_model.dart';
+import 'package:catch_cow_app/views/post_cow_page.dart';
+import 'package:catch_cow_app/viewModels/user_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_auth/firebase_auth.dart' as Auth;
