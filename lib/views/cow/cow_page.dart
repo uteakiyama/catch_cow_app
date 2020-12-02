@@ -1,8 +1,8 @@
-import 'package:catch_cow_app/views/post_cow_page.dart';
+import 'package:catch_cow_app/views/cow/post_cow_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../models/cow.dart';
-import '../viewModels/cow_view_model.dart';
+import '../../models/cow/cow_model.dart';
+import '../../viewModels/cow/cow_view_model.dart';
 
 class CowPage extends StatelessWidget {
   const CowPage({Key key, @required this.cow}) : super(key: key);

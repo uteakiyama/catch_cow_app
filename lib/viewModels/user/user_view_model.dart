@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../models/user_model.dart';
-import '../views/login_page.dart';
-import 'package:catch_cow_app/config/authentication_service.dart';
+import '../../models/user/user_model.dart';
+import '../../views/user/login_page.dart';
+import 'package:catch_cow_app/models/user/authentication_service.dart';
 
 class UserViewModel extends ChangeNotifier {
   String mail = '';
