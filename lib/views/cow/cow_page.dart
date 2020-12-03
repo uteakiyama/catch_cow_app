@@ -1,4 +1,7 @@
+import 'package:catch_cow_app/config/global.dart';
 import 'package:catch_cow_app/views/cow/post_cow_page.dart';
+import 'package:firebase_image/firebase_image.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../models/cow/cow_model.dart';
@@ -66,6 +69,11 @@ class CowPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            // Image.network('${firebaseStorageEndPoint}news_245382_1.jpg'),
+            // Image(
+            //   image:
+            //       FirebaseImage('${firebaseStorageEndPoint}news_245382_1.jpg'),
+            // ),
             Text(
               cow.cowNumber,
               style: TextStyle(fontSize: 40),

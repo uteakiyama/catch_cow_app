@@ -11,7 +11,7 @@ import 'package:path_provider/path_provider.dart';
 class CowViewModel extends ChangeNotifier {
   String cowNumber = '';
   String locale = '';
-  File imageFile;
+  File image;
   firebase_storage.FirebaseStorage storage =
       firebase_storage.FirebaseStorage.instance;
 
@@ -52,24 +52,26 @@ class CowViewModel extends ChangeNotifier {
     await CowService().deleteCow(documentId: documentId);
   }
 
-  setImage(File imageFile) {
-    this.imageFile = imageFile;
+  void changeImage(File inputImage) {
+    image = inputImage;
     notifyListeners();
   }
 
   Future<String> _uploadImageFile() async {
-    if (imageFile == null) {
+    if (image == null) {
       return '';
     }
+    // final int timestamp = DateTime.now().millisecondsSinceEpoch;
+    // final String fileName =‘$timestamp.png’;
     final Reference reference = storage.ref().child(cowNumber);
-    await reference.putFile(imageFile);
+    await reference.putFile(image);
     return await reference.getDownloadURL();
   }
 
   Future showImagePicker() async {
     final picker = ImagePicker();
     final pickedFile = await picker.getImage(source: ImageSource.gallery);
-    imageFile = File(pickedFile.path);
+    image = File(pickedFile.path);
     // Directory appDocDir = await getApplicationDocumentsDirectory();
     // String filePath = '${appDocDir.absolute}/file-to-upload.png';
     // // await uploadFile(filePath);

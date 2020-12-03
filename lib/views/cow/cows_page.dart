@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:catch_cow_app/models/cow/cow_model.dart';
 import 'package:catch_cow_app/views/cow/cow_page.dart';
 import 'package:catch_cow_app/viewModels/cow/cow_view_model.dart';
@@ -46,25 +48,28 @@ class CowsPage extends StatelessWidget {
             children: snapshot.data.docs.map((DocumentSnapshot document) {
               return Slidable(
                 actionPane: SlidableDrawerActionPane(),
-                child: ListTile(
-                  title: Text(document.data()['cowNumber']),
-                  subtitle: Text(document.data()['locale']),
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) {
-                          return CowPage(
-                            cow: Cow(
-                              documentId: document.id,
-                              cowNumber: document.data()['cowNumber'],
-                              locale: document.data()['locale'],
-                            ),
-                          );
-                        },
-                      ),
-                    );
-                  },
+                child: Card(
+                  child: ListTile(
+                    // leading: Image.network(src), // 条件分岐させて写真の有無で切り替え
+                    title: Text(document.data()['cowNumber']),
+                    subtitle: Text(document.data()['locale']),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return CowPage(
+                              cow: Cow(
+                                documentId: document.id,
+                                cowNumber: document.data()['cowNumber'],
+                                locale: document.data()['locale'],
+                              ),
+                            );
+                          },
+                        ),
+                      );
+                    },
+                  ),
                 ),
                 actions: <Widget>[
                   IconSlideAction(
