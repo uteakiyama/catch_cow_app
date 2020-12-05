@@ -12,6 +12,7 @@ class CowViewModel extends ChangeNotifier {
   String cowNumber = '';
   String locale = '';
   File image;
+  String imageUrl = '';
   firebase_storage.FirebaseStorage storage =
       firebase_storage.FirebaseStorage.instance;
 
@@ -34,18 +35,18 @@ class CowViewModel extends ChangeNotifier {
   }
 
   void postCow() async {
-    final imageUrl = await _uploadImageFile(); //つけた
+    // final imageUrl = await _uploadImageFile(); //つけた
     await CowService()
-        .addCow(cowNumber: cowNumber, locale: locale, imageUrl: imageUrl);
+        .addCow(cowNumber: cowNumber, locale: locale, image: image);
   }
 
   void updateCow({@required String documentId}) async {
-    final imageUrl = await _uploadImageFile(); //つけた
+    // final imageUrl = await _uploadImageFile(); //つけた
     await CowService().updateCow(
         documentId: documentId,
         cowNumber: cowNumber,
         locale: locale,
-        imageUrl: imageUrl);
+        image: image);
   }
 
   void deleteCow({@required String documentId}) async {

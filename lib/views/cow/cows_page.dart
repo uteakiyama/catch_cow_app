@@ -63,6 +63,7 @@ class CowsPage extends StatelessWidget {
                                 documentId: document.id,
                                 cowNumber: document.data()['cowNumber'],
                                 locale: document.data()['locale'],
+                                imageUrl: document.data()['imageUrl'],
                               ),
                             );
                           },

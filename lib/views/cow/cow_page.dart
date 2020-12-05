@@ -1,4 +1,3 @@
-import 'package:catch_cow_app/config/global.dart';
 import 'package:catch_cow_app/views/cow/post_cow_page.dart';
 import 'package:firebase_image/firebase_image.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -69,11 +68,14 @@ class CowPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Image.network('${firebaseStorageEndPoint}news_245382_1.jpg'),
-            // Image(
-            //   image:
-            //       FirebaseImage('${firebaseStorageEndPoint}news_245382_1.jpg'),
-            // ),
+            Image.network(cow.imageUrl),
+
+            // cow.fileName == ''
+            //         ? Text('画像がありません')
+            //         : Image(
+            //             image:
+            //                 FirebaseImage(firebaseStorageEndpoint + cow.fileName),
+            //           ),
             Text(
               cow.cowNumber,
               style: TextStyle(fontSize: 40),

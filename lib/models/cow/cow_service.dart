@@ -10,22 +10,51 @@ class CowService {
   Future<void> addCow({
     @required String cowNumber,
     @required String locale,
-    String imageUrl,
+    File image,
   }) async {
+    String imageUrl = '';
+
+    if (image != null) {
+      final int timestamp = DateTime.now().microsecondsSinceEpoch;
+      final fileName = '$timestamp.png';
+      final firebase_storage.Reference ref = firebase_storage
+          .FirebaseStorage.instance
+          .ref()
+          .child('images')
+          .child(fileName);
+      await ref.putFile(image);
+      imageUrl = await ref.getDownloadURL();
+    }
     CollectionReference cows = FirebaseFirestore.instance.collection('cows');
-    return cows.add({
-      'cowNumber': cowNumber,
-      'locale': locale,
-      'imageUrl': imageUrl,
-    });
+    return cows.add(
+      {
+        'cowNumber': cowNumber,
+        'locale': locale,
+        'imageUrl': imageUrl,
+      },
+    );
   }
 
   Future<void> updateCow({
     @required String documentId,
     @required String cowNumber,
     @required String locale,
-    String imageUrl,
-  }) {
+    String ImageUrl,
+    File image,
+  }) async {
+    String imageUrl = '';
+
+    if (image != null) {
+      final int timestamp = DateTime.now().microsecondsSinceEpoch;
+      final fileName = '$timestamp.png';
+      final firebase_storage.Reference ref = firebase_storage
+          .FirebaseStorage.instance
+          .ref()
+          .child('images')
+          .child(fileName);
+      await ref.putFile(image);
+      imageUrl = await ref.getDownloadURL();
+    }
     CollectionReference cows = FirebaseFirestore.instance.collection('cows');
     return cows.doc(documentId).update({
       'cowNumber': cowNumber,
