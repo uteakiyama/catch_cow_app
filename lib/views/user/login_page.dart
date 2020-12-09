@@ -1,3 +1,4 @@
+import 'package:catch_cow_app/viewModels/medicine/medicine_view_model.dart';
 import 'package:catch_cow_app/views/cow/cows_page.dart';
 import 'package:catch_cow_app/views/user/sign_up_page.dart';
 import 'package:flutter/material.dart';
@@ -8,12 +9,14 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<UserViewModel>(context);
+    final medicine = Provider.of<MedicineViewModel>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text('ログイン画面'),
         actions: [
           FlatButton(
             onPressed: () {
+              medicine.setDateOfWashoutPeriod();
               Navigator.push(
                 context,
                 MaterialPageRoute(
